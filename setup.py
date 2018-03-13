@@ -9,6 +9,6 @@ setup(name='isaExplorer',
       license='MIT',
       packages=['isaExplorer'],
       install_requires=[
-          'isatools',
+          'isatools'
       ],
       zip_safe=False)
