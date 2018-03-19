@@ -33,7 +33,7 @@ def exploreISA(pathToISATABFile, verbose=True):
     return found
 
 
-def getISAAassay(assay_num, study_num, path_to_isa_file):
+def getISAAssay(assay_num, study_num, path_to_isa_file):
     """
     This function returns an Assay object given the assay and study numbers in an ISA file
     Typically, you should use the exploreISA function to check the contents
@@ -88,6 +88,7 @@ def appendStudytoISA(study, path_to_isa_file):
     try:
         isa = isatab.load(path_to_isa_file)
         isa.studies.append(study)
+        isatab.dump(isa_obj=isa, output_path=path_to_isa_file)
         return True
     except FileNotFoundError as err:
         raise err
@@ -112,6 +113,7 @@ def appendAssayToStudy(assay, study_num, path_to_isa_file):
         isa = isatab.load(path_to_isa_file)
         std = isa.studies[study_num - 1]
         std.assays.append(assay)
+        isatab.dump(isa_obj=isa, output_path=path_to_isa_file)
         return True
     except FileNotFoundError as err:
         raise err
@@ -136,6 +138,7 @@ def dropAssayFromStudy(assay_num, study_num, path_to_isa_file):
         std = isa.studies[study_num - 1]
         assays = std.assays
         del assays[assay_num - 1]
+        isatab.dump(isa_obj=isa, output_path=path_to_isa_file)
         return True
     except FileNotFoundError as err:
         raise err
@@ -157,6 +160,7 @@ def dropStudyFromISA(study_num, path_to_isa_file):
         isa = isatab.load(path_to_isa_file)
         studies = isa.studies
         del studies[study_num - 1]
+        isatab.dump(isa_obj=isa, output_path=path_to_isa_file)
         return True
     except FileNotFoundError as err:
         raise err
