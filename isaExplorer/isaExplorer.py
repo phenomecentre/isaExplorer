@@ -36,7 +36,7 @@ def exploreISA(pathToISATABFile, verbose=True):
 def getISAAassay(assay_num, study_num, path_to_isa_file):
     """
     This function returns an Assay object given the assay and study numbers in an ISA file
-    Typically, you should use the exploreISA function to check the contents 
+    Typically, you should use the exploreISA function to check the contents
     of the ISA file and retrieve the assay and study numbers you are interested in!
     :param assay_num: The Assay number (notice it's not zero-based index).
     :type assay_num: int
@@ -58,7 +58,7 @@ def getISAAassay(assay_num, study_num, path_to_isa_file):
 def getISAStudy(study_num, path_to_isa_file):
     """
     This function returns a Study object given the study number in an ISA file
-    Typically, you should use the exploreISA function to check the contents 
+    Typically, you should use the exploreISA function to check the contents
     of the ISA file and retrieve the study number you are interested in!
     :param study_num: The Study number (notice it's not zero-based index).
     :type study_num: int
@@ -76,7 +76,7 @@ def getISAStudy(study_num, path_to_isa_file):
 def appendStudytoISA(study, path_to_isa_file):
     """
     This function appends a Study object to an ISA file
-    Typically, you should use the exploreISA function to check the contents 
+    Typically, you should use the exploreISA function to check the contents
     of the ISA file!
     :param study: The Study object.
     :type study: ISA Study object
@@ -97,9 +97,9 @@ def appendStudytoISA(study, path_to_isa_file):
 def appendAssayToStudy(assay, study_num, path_to_isa_file):
     """
     This function appends an Assay object to a study in an ISA file
-    Typically, you should use the exploreISA function to check the contents 
+    Typically, you should use the exploreISA function to check the contents
     of the ISA file and retrieve the assay and study number you are interested in!
-    :param assay: The Assay 
+    :param assay: The Assay
     :type assay_num: ISA Assay object
     :param study_num: The Study number (notice it's not zero-based index).
     :type study_num: int
@@ -117,5 +117,47 @@ def appendAssayToStudy(assay, study_num, path_to_isa_file):
         raise err
     return False
 
+def dropAssayFromStudy(assay_num, study_num, path_to_isa_file):
+    """
+    This function removes an Assay from a study in an ISA file
+    Typically, you should use the exploreISA function to check the contents
+    of the ISA file and retrieve the assay and study numbers you are interested in!
+    :param assay_num: The Assay number (notice it's 1-based index).
+    :type assay_num: int
+    :param study_num: The Study number (notice it's 1-based index).
+    :type study_num: int
+    :param path_to_isa_file: The path to the ISATAB file
+    :type path_to_isa_file: string
+    :raise FileNotFoundError: If pathToISATABFile does not contain file 'i_Investigation.txt'.
+    """
+    from isatools import isatab
+    try:
+        isa = isatab.load(path_to_isa_file)
+        std = isa.studies[study_num - 1]
+        assays = std.assays
+        del assays[assay_num - 1]
+        return True
+    except FileNotFoundError as err:
+        raise err
+    return False
 
-
+def dropStudyFromISA(study_num, path_to_isa_file):
+    """
+    This function removes a study from an ISA file
+    Typically, you should use the exploreISA function to check the contents
+    of the ISA file and retrieve the study number you are interested in!
+    :param study_num: The Study number (notice it's 1-based index).
+    :type study_num: int
+    :param path_to_isa_file: The path to the ISATAB file
+    :type path_to_isa_file: string
+    :raise FileNotFoundError: If pathToISATABFile does not contain file 'i_Investigation.txt'.
+    """
+    from isatools import isatab
+    try:
+        isa = isatab.load(path_to_isa_file)
+        studies = isa.studies
+        del studies[study_num - 1]
+        return True
+    except FileNotFoundError as err:
+        raise err
+    return False
