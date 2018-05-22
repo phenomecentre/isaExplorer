@@ -1,0 +1,43 @@
+language: python
+python:
+  - "3.6"
+  - "3.6-dev"  # 3.6 development branch
+  - "3.7-dev"  # 3.7 development branch
+
+matrix:
+  allow_failures:
+    - python: "3.7-dev"
+
+branches:
+  only:
+  - master
+  - develop
+  - /^v\d+\.\d+(\.\d+)?(-\S*)?$/ # Build releases tagged in the form `v1.2.3`
+
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+  - pip install coverage
+  - pip install codecov
+
+# command to run tests
+# before_script:
+#   - cd Tests
+
+script:
+  - coverage run -m unittest discover
+
+after_success:
+  - coverage combine
+  - codecov
+
+deploy:
+  provider: pypi
+  user: "phenomecentre"
+  password:
+    secure: BoBleBj0YGZ8944mSme+Wpg57eujyYoVoUePYuJpf21nNc9pOHeIO9GQa/XpFtL9rjkzZpq4xwyi6chHbSEm7ibKtDXMqeCZAnmHeHX0MbV6VMOxPKNb8VyGScoxPRBRrWWkhQvpISklj9fkKH10aR6pRutoKCmVkED9UVrk5BGqXp4KgGmudRRkPo0+PQgsZr1NZxND6ELgknjyzQ8vcVdIRXL6LXVeJRELDl8lRKHT4yFAH2kFZ9gp4/cVGgvVp40DUvRdqZwX8a/SZHTd+x/rNJMSNMlcw4GYONsSpztutBRnioBr8Gt9sSNxVDR0R9Nx17jXmFgkxNSoxUNLGzrByLYdym9Gmnn+Fb5bmuiDvSs5lAEvQDzBxUGO5lfD4UJ2kVb+fMSoeLYrvwUWT5pZbcD/UOcDgyDb7p1CPtiAG+8PTJxG2ATJttVhH/+bF/IYxEtpWtUdneY5mSS/GJ0Hz1DzjKkmR4zsDwiChbJBPeKPBVvPlp9yCxn8tkJI9vfpNHXwHCCKXzn8vKUueIFBqDgU4MEW7QPR86PX2yfBVOC63WYzjcfKtTCB07G4W43xV4ok1vxRkqWfoxaqCi+tSXidcFYOk1nAtJtDLsOGMDGFlBZ/RisWcUwY1QHu2WoOneNLG6k3ERln7LpUuaxK8mLaycd/kv0i0/UCAU8=
+  distributions: "sdist bdist_wheel"
+  on:
+    branch: master
+    tags: true
+    python: 3.6

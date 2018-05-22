@@ -56,14 +56,14 @@ Study Factor Type	Gender	metabolic syndrome
 Study Factor Type Term Accession Number	http://ncicb.nci.nih.gov/xml/owl/EVS/Thesaurus.owl	
 Study Factor Type Term Source REF	NCIT	EFO
 STUDY ASSAYS
-Study Assay File Name	a_mtbls1_metabolite_profiling_NMR_spectroscopy.txt
-Study Assay Measurement Type	metabolite profiling
-Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366
-Study Assay Measurement Type Term Source REF	OBI
-Study Assay Technology Type	NMR spectroscopy
-Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623
-Study Assay Technology Type Term Source REF	OBI
-Study Assay Technology Platform	Bruker
+Study Assay File Name	a_mtbls1_metabolite_profiling_NMR_spectroscopy.txt	a_mtbls1_metabolite_profiling_NMR_spectroscopy2.txt
+Study Assay Measurement Type	metabolite profiling	metabolite profiling
+Study Assay Measurement Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000366	http://purl.obolibrary.org/obo/OBI_0000366
+Study Assay Measurement Type Term Source REF	OBI	OBI
+Study Assay Technology Type	NMR spectroscopy	NMR spectroscopy
+Study Assay Technology Type Term Accession Number	http://purl.obolibrary.org/obo/OBI_0000623	http://purl.obolibrary.org/obo/OBI_0000623
+Study Assay Technology Type Term Source REF	OBI	OBI
+Study Assay Technology Platform	Bruker	Bruker
 STUDY PROTOCOLS
 Study Protocol Name	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification	Sample collection
 Study Protocol Type	Extraction	NMR sample	NMR spectroscopy	NMR assay	Data transformation	Metabolite identification	Sample collection
