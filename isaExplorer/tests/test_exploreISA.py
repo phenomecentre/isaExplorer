@@ -22,8 +22,7 @@ class TestAppendStudytoISA(TestCase):
     def test_AppendStudytoISA(self):
         pathToISATABFile = os.path.join(os.path.dirname(__file__), './test_data/MTBLS1/')
         study = isaExplorer.isaExplorer.getISAStudy(1,pathToISATABFile)
-        study_appended = isaExplorer.isaExplorer.appendStudytoISA(study,pathToISATABFile)
-        self.assertIsNone(study_appended)
+        self.assertIsNone(isaExplorer.isaExplorer.appendStudytoISA(study,pathToISATABFile))
 
 class TestDropStudyFromISA(TestCase):
     def test_dropStudyFromISA(self):
