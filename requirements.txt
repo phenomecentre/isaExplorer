@@ -1,2 +1,2 @@
-setuptools==39.1.0
+setuptools==65.5.1
 isatools==0.9.3
